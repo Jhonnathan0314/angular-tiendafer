@@ -1,1 +1,102 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    font-family: sans-serif;
+    font-size: 18px;
+}
+
+body {
+    background-image: url(./assets/img/fondoPrincipal.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container {
+    border: 1px solid transparent;
+    height: 100vh;
+}
+
+.logo {
+    text-align: center;
+}
+
+.logo img {
+    width: 100px;
+}
+
+.menu {
+    width: 15em;
+}
+
+.menu_option {
+    margin: 10px 5px;
+}
+
+.menu_option button {
+    width: 100%;
+    height: 40px;
+    background: #0f3342cc;
+    color: #fff;
+    border-radius: 15px; 
+    transition: background .2s;
+}
+
+.menu_option button:hover {
+    background: #21d182;
+}
+
+.menu_option button:active {
+    background: rgb(8, 116, 67);
+}
+
+.dashboard {
+    width: 80%;
+    height: 80vh;
+    margin: 0 50px;
+    padding: 10px 20px;
+    background: #0f3342cc;
+    border-radius: 15px;
+    text-align: center;
+    color: #fff;
+}
+
+.dashboard p {
+    font-size: 2.2em;
+}
+
+input, button, select {
+    border: none;
+    outline: none;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+footer {
+    background: #6cffbd;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+footer p {
+    color: #000;
+}
+
+::-webkit-scrollbar {
+    background: #ccc;
+    border-radius: 0 15px 15px 0;
+    width: .7em;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 0 15px 15px 0;
+}

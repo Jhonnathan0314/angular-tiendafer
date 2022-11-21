@@ -1,0 +1,205 @@
+.container {
+    padding: 25px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.search {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.search input {
+    height: 40px;
+}
+
+.search input[type=text] {
+    width: 80%;
+    border-radius: 15px 0 0 15px;
+    border: 1px solid #999;
+}
+
+.search button {
+    width: 20%;
+    border-radius: 0 15px 15px 0;
+    color: #fff;
+    background: rgb(14, 150, 89);  
+    transition: background .2s;
+}
+
+.search button:hover, .action button:hover, .header_four button:hover {
+    background: rgb(10, 121, 71);  
+}
+
+.action {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.action button {
+    width: 30%;
+    height: 40px; 
+    border-radius: 15px;
+    color: #fff;
+    background: rgb(14, 150, 89); 
+    transition: background .2s;
+}
+
+.action .cancel {
+    background: rgb(255, 92, 92); 
+    transition: background .2s;
+}
+
+.action .cancel:hover {
+    background: rgb(255, 68, 68); 
+}
+
+.table_container {
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    font-size: 1em;
+    margin: auto; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+table thead tr { 
+    background-color: rgb(14, 150, 89);
+    color: #ffffff; 
+    text-align: middle; 
+}
+
+table tbody {
+    color: #000;
+}
+
+table td { 
+    padding: 5px 10px; 
+}
+
+table tbody tr { 
+    border-bottom: 1px solid #dddddd; 
+} 
+
+table tbody tr:nth-of-type(1n) { 
+    background-color: #f3f3f3; 
+} 
+
+table tbody tr:nth-of-type(2n) { 
+    background-color: #dadada; 
+} 
+
+tbody img {
+    width: 2em;
+}
+
+.subtitle {
+    font-size: 1.5em;
+}
+
+.bill {
+    margin-top: 10px;
+    padding: 0 5px;
+    height: 80%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    background: #fff;
+    border-radius: 15px;
+    color: #000;
+}
+
+.header_one {
+    grid-area: 1 / 1 / 2 / 3; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header_one select {
+    height: 30px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background: #ddd;
+}
+
+.header_one label {
+    margin: 5px 0;
+}
+
+.header_two { 
+    grid-area: 1 / 3 / 2 / 5; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header_three { 
+    grid-area: 2 / 1 / 3 / 5;
+}
+
+.header_four { 
+    margin-top: 10px;
+    grid-area: 3 / 1 / 4 / 5; 
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header_four input[type=number] {
+    height: 30px;
+    width: 180px;
+    border-radius: 15px;
+    border: 1px solid #999;
+}
+
+.header_four button {
+    height: 30px;
+    width: 180px;
+    border-radius: 15px;
+    background: rgb(14, 150, 89);
+    color: #fff;
+    transition: background .2s;
+}
+
+.header_five {
+    margin-top: 10px;
+    grid-area: 4 / 1 / 6 / 5; 
+    height: 190px;
+}
+
+.header_six {
+    grid-area: 6 / 1 / 7 / 5; 
+    text-align: end;
+    padding: 5px 0;
+}
+
+.header_six label {
+    font-size: 1.3em;
+}
+
+.header_seven { 
+    margin: 0;
+    grid-area: 7 / 1 / 8 / 5; 
+    display: flex;
+    justify-content: space-between;
+}
+
+.border {
+    border: 1px solid #888;
+    border-radius: 15px;
+    height: 30px;
+}

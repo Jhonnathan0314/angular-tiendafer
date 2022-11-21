@@ -1,0 +1,104 @@
+.container {
+    padding: 25px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.search {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.search input, .search button {
+    height: 40px;
+}
+
+.search input[type=text] {
+    width: 80%;
+    border-radius: 15px 0 0 15px;
+}
+
+.search button {
+    width: 20%;
+    border-radius: 0 15px 15px 0;
+    color: #fff;
+    background: rgb(14, 150, 89);  
+    transition: background .2s;
+}
+
+.search button:hover, .action button:hover {
+    background: rgb(10, 121, 71);  
+}
+
+.action {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.action button {
+    width: 30%;
+    height: 40px; 
+    border-radius: 15px;
+    color: #fff;
+    background: rgb(14, 150, 89); 
+    transition: background .2s;
+}
+
+.table_container {
+    border-radius: 15px;
+    margin-top: 10px;
+    height: 65%;
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    font-size: 1em;
+    margin: auto; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+table thead tr { 
+    background-color: rgb(14, 150, 89);
+    color: #ffffff; 
+    text-align: middle; 
+}
+
+table tbody {
+    color: #000;
+}
+
+table td { 
+    padding: 5px 10px; 
+}
+
+table tbody tr { 
+    border-bottom: 1px solid #dddddd; 
+} 
+
+table tbody tr:nth-of-type(1n) { 
+    background-color: #f3f3f3; 
+} 
+
+table tbody tr:nth-of-type(2n) { 
+    background-color: #dadada; 
+} 
+
+tbody img {
+    width: 2em;
+}
+
+.subtitle {
+    font-size: 1.5em;
+}
+
+.search select {
+    border-radius: 15px 0 0 15px;
+}

@@ -1,0 +1,43 @@
+.container {
+    padding: 25px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.dashboard {
+    width: 40%;
+    height: 80vh;
+    margin: 0 auto;
+    padding-top: 15px;
+}
+
+form {
+    margin: auto;
+    width: 90%;
+}
+
+.field, .button {
+    margin: 10px 0;
+}
+
+.field p {
+    font-size: 1.4em;
+}
+
+.field input, .button button, select {
+    margin-top: 10px;
+    height: 40px;
+    width: 80%;
+    border-radius: 15px;
+}
+
+.button button {
+    color: #fff;
+    background: rgb(14, 150, 89); 
+    transition: background .2s;
+}
+
+.button button:hover {
+    background: rgb(10, 121, 71);  
+}

@@ -1,0 +1,45 @@
+.container {
+    padding: 25px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.dashboard {
+    width: 40%;
+    height: 75vh;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding-top: 30px;
+}
+
+form {
+    padding: 10px 0;
+    margin: auto;
+    width: 90%;
+}
+
+.field, .button {
+    margin: 10px 0;
+}
+
+.field p {
+    font-size: 1.4em;
+}
+
+.field input, .button input {
+    margin-top: 10px;
+    height: 40px;
+    width: 80%;
+    border-radius: 15px;
+}
+
+.button input {
+    color: #fff;
+    background: rgb(14, 150, 89); 
+    transition: background .2s;
+}
+
+.button input:hover {
+    background: rgb(10, 121, 71);  
+}

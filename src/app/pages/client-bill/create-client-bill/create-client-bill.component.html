@@ -1,0 +1,135 @@
+<div class="container">
+    <div class="menu">
+        <div class="logo">
+            <a routerLink="/home"><img src="../../../../assets/img/logoTienda.png" alt=""></a>
+        </div>
+        <div class="menu_option">
+            <a routerLink="/home/section">
+                <button>Secciones</button>
+            </a>
+        </div>
+        <div class="menu_option">
+            <a routerLink="/home/product">
+                <button>Productos</button>
+            </a>
+        </div>
+        <div class="menu_option">
+            <a routerLink="/home/supplier">
+                <button>Proveedores</button>
+            </a>
+        </div>
+        <div class="menu_option">
+            <a routerLink="/home/order">
+                <button>Pedidos</button>
+            </a>
+        </div>
+        <div class="menu_option">
+            <a routerLink="/home/client">
+                <button>Clientes</button>
+            </a>
+        </div>
+        <div class="menu_option">
+            <a routerLink="/home/clientbill">
+                <button>Facturas</button>
+            </a>
+        </div>
+        <div class="menu_option">
+            <a routerLink="/home/payment">
+                <button>Pagos</button>
+            </a>
+        </div>
+        <div class="menu_option">
+            <a routerLink="/home">
+                <button>Reportes</button>
+            </a>
+        </div>
+    </div>
+    <div class="dashboard">
+        <p>Crear factura</p>
+        <div class="bill">
+            <div class="header_one">
+                <label>Codigo factura: </label>
+                <div class="select_container">
+                    <label>Cliente: </label>
+                    <select name="" id="">
+                        <option value="">Seleccione un cliente</option>
+                        <option value="">Cliente 1</option>
+                        <option value="">Cliente 2</option>
+                        <option value="">Cliente 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="header_two">
+                <label>Fecha: </label>
+            </div>
+            <div class="header_three search">
+                <input type="text" placeholder="Consultar producto">
+                <button>Consultar</button>
+            </div>
+            <div class="header_four">
+                <label>Nombre producto</label>
+                <label>Stock disponible: </label>
+                <input type="number" name="" id="" placeholder="Cantidad">
+                <button>Agregar</button>
+            </div>
+            <div class="table_container header_five">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Producto</td>
+                            <td>Cantidad</td>
+                            <td>Valor unitario</td>
+                            <td>Valor conjunto</td>
+                            <td>Eliminar</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nombre producto</td>
+                            <td>5</td>
+                            <td>1000</td>
+                            <td>5000</td>
+                            <td>
+                                <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nombre producto</td>
+                            <td>5</td>
+                            <td>1000</td>
+                            <td>5000</td>
+                            <td>
+                                <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nombre producto</td>
+                            <td>5</td>
+                            <td>1000</td>
+                            <td>5000</td>
+                            <td>
+                                <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nombre producto</td>
+                            <td>5</td>
+                            <td>1000</td>
+                            <td>5000</td>
+                            <td>
+                                <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="header_six">
+                <label>Valor compra: 25000</label>
+            </div>
+            <div class="action header_seven">
+                <button class="cancel" routerLink="/home/clientbill/all">Cancelar</button>
+                <button>Registrar</button>
+            </div>
+        </div>
+    </div>
+</div>
