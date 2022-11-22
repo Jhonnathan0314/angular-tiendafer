@@ -6,8 +6,8 @@ export interface DetailOrderBill{
     orderedQuantity?: number;
     receivedQuantity?: number;
     unitValue?: number;
-    totalValue?: number;
     percentageProfit?: number;
+    totalValue?: number;
     product?: Product;
     orderBill?: OrderBill;
 }

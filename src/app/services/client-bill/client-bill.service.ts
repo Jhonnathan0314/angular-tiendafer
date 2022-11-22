@@ -30,6 +30,11 @@ export class ClientBillService {
     return this.http.post<ClientBill>(URL, clientBill);
   }
 
+  addClient(idClientBill: number, idClient: number): Observable<ClientBill> {
+    let URL = "/api/clientbill/" + idClientBill + "/client/" + idClient;
+    return this.http.put<ClientBill>(URL, {});
+  }
+
   deleteById(id: number): Observable<any>{
     let URL = "/api/clientbill/" + id;
     return this.http.delete<any>(URL);

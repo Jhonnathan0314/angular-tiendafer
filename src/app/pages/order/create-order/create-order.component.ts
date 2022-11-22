@@ -18,26 +18,29 @@ import { DetailOrderBillService } from 'src/app/services/detail-order-bill/detai
 })
 export class CreateOrderComponent implements OnInit {
 
+  /* Variable que guarda la factura actual */
   actualOrder?: OrderBill;
 
+  /* Id del proveedor seleccionado */
   idSupplier: number = 0;
 
+  /* Fecha actual */
   actualDate?: string;
 
+  /* Id del producto seleccionado en el modal */
   idProduct?: number;
+  /* Variable que guarda el nombre del/los productos a buscar */
   productName?: string;
-  orderedQuantityProduct: number = 0;
-  receivedQuantityProduct: number = 0;
-  unitValueProduct: number = 0;
-  saleValue: number = 0;
-  totalOrder?: number;
   
-  findedProducts?: Product[];
+  /* Guarda el producto seleccionado en el modal */
   actualProduct?: Product;
-  percentageProfit?: number;
-  
+  /* Arreglo de productos que se visualizan en el modal */
+  findedProducts?: Product[];
+  /* Arreglo que tiene los productos añadidos a la factura */
   selectedProducts?: DetailOrderBill[];
+  /* Arreglo que tiene todos los proveedores */
   suppliers?: Supplier[];
+  /* Arreglo que tiene todos los productos */
   products?: Product[];
 
   constructor(private orderService: OrderService, private detailOrderService: DetailOrderBillService, 
@@ -45,6 +48,12 @@ export class CreateOrderComponent implements OnInit {
     private router: Router, private dialog: MatDialog) {
   }
 
+  /* Antes de iniciar valida:
+   * - Existencia de un pedido que no se finalizó
+   * - Guarda todos los proveedores
+   * - Guarda todos los productos
+   * - Guarda los productos agregados al pedido en curso
+  */
   ngOnInit(): void {
     this.validateOrder();
     this.findSuppliers();
@@ -52,10 +61,7 @@ export class CreateOrderComponent implements OnInit {
     this.findSelectedProducts();
   }
 
-  ngAfterViewChecked(): void {
-    this.updateTotals();
-  }
-
+  /* Si no existe un pedido crea uno nuevo, de lo contrario va a loadOrder() */
   validateOrder(){
     if(localStorage.getItem("actualOrder") == null){
       this.createOrder();
@@ -64,6 +70,7 @@ export class CreateOrderComponent implements OnInit {
     }
   }
 
+  /* Crea un nuevo pedido con la fecha actual y el resto de atributos en 0 */
   createOrder(){
     this.actualDate = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
     let order: OrderBill = {
@@ -82,6 +89,7 @@ export class CreateOrderComponent implements OnInit {
     })
   }
 
+  /* Busca el pedido en curso por id */
   loadOrder(){
     let idOrder = parseInt(localStorage.getItem("actualOrder")!);
     this.orderService.findById(idOrder).subscribe({
@@ -94,6 +102,7 @@ export class CreateOrderComponent implements OnInit {
     })
   }
 
+  /* Busca todos los proveedores */
   findSuppliers(){
     this.supplierService.findAll().subscribe({
       next: (suppliers) => {
@@ -105,6 +114,7 @@ export class CreateOrderComponent implements OnInit {
     })
   }
 
+  /* Busca todos los productos */
   findProducts(){
     this.productService.findAll().subscribe({
       next: (products) => {
@@ -116,10 +126,12 @@ export class CreateOrderComponent implements OnInit {
     })
   }
 
+  /* Busca los productos agregados al pedido en curso */
   findSelectedProducts(){
     this.detailOrderService.findAll().subscribe({
       next: (details) => {
         this.selectedProducts = details.filter(detail => detail.orderBill?.idOrderBill == this.actualOrder?.idOrderBill);
+        this.updateTotals();
       },
       error: (err) => {
         console.log(err);
@@ -127,6 +139,13 @@ export class CreateOrderComponent implements OnInit {
     })
   }
 
+  setSupplier(){
+    
+  }
+
+  /* Guarda los productos que coincidan con la busqueda y los envia al modal, seguidamente abre el modal
+   * Cuando finaliza, en caso de haber seleccionado un producto se guarda su id
+  */
   showOptions(){
     if(this.productName != undefined){
       this.findedProducts = this.products?.filter(product => product.name!.toUpperCase().includes(this.productName!.toUpperCase()));
@@ -144,27 +163,23 @@ export class CreateOrderComponent implements OnInit {
     }
   }
 
+  /* Agrega un producto al pedido siguiendo los siguientes pasos:
+   * - Valida si esta repetido o no
+   * - Ejecuta el metodo saveData()
+   * - Si hay un producto seleccionado y no esta repetido
+   *    - Crea un nuevo detailOrder vacio, enviando su producto y pedido
+   *    - En caso de ejecutarse de manera correcta lo guarda en el arrego selectedProducts
+   *    - Si se encuentra el id del pedido en localStorage ejecuta ngOnInit() para actualizar la pantalla
+  */
   addProduct(){
-    if(this.selectedProducts?.length! > 0){
-      for(let detail of this.selectedProducts!){
-        this.detailOrderService.update(detail, detail.idDetailOrderBill!, detail.product?.idProduct!, detail.orderBill?.idOrderBill!).subscribe({
-          next: (res) => {
-            this.productService.update(detail.product!, detail.product?.idProduct!, detail.product?.section?.idSection!).subscribe({
-              next: (product) => {
-                detail.product = product;
-              },
-              error: (err) =>{
-                console.log(err);
-              }
-            })
-          },
-          error: (err) => {
-            console.log(err);
-          }
-        })
+    let isRepeated = false;
+    for(let detail of this.selectedProducts!){
+      if(detail.product?.idProduct == this.actualProduct?.idProduct){
+        isRepeated = true;
       }
     }
-    if(this.actualProduct != undefined){
+    this.saveData()
+    if(this.actualProduct != undefined && !isRepeated){
       let detail: DetailOrderBill = {
         idDetailOrderBill: 0,
         orderedQuantity: 0,
@@ -180,33 +195,73 @@ export class CreateOrderComponent implements OnInit {
           console.log(err);
         }
       })
-      this.ngOnInit()
+      this.actualProduct = undefined;
+      if(localStorage.getItem("actualOrder") != null){
+        this.ngOnInit()
+      }
     }
   }
 
+  /* 
+   * En caso de haber productos recorre el arreglo en el que se encuentra y:
+   * - Actualiza detailOrder en la base de datos con el producto anterior
+   * - Actualiza el nuevo precio del producto anterior
+   * - Actualiza pantalla 
+  */
+  saveData(){
+    if(this.selectedProducts?.length! > 0){
+      for(let detail of this.selectedProducts!){
+        this.detailOrderService.update(detail, detail.idDetailOrderBill!, detail.product?.idProduct!, detail.orderBill?.idOrderBill!).subscribe({
+          next: (res) => {
+            res.product!.saleValue = detail.product?.saleValue;
+            this.productService.update(res.product!, res.product?.idProduct!, res.product?.section?.idSection!).subscribe({
+              next: (product) => {
+                detail.product = product;
+                if(localStorage.getItem("actualOrder") != null){
+                  this.ngOnInit()
+                }
+              },
+              error: (err) =>{
+                console.log(err);
+              }
+            })
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        })
+      }
+    }
+  }
+
+  /* Elimina el detalle con el producto seleccionado en pantalla y actualiza la pantalla */
   removeProduct(idProduct: number){
-
-  }
-
-  updateTotal(idDetailOrderBill: number){
-    for(let detail of this.selectedProducts!){
-      if(detail.idDetailOrderBill == idDetailOrderBill){
-        detail.totalValue = detail.receivedQuantity! * detail.unitValue!;
-        detail.percentageProfit = Number((((detail.product!.saleValue! - detail.unitValue!) / detail.unitValue!)*100).toFixed(2));
-      }
+    let detailRemove: DetailOrderBill[] = this.selectedProducts?.filter(detail => detail.product?.idProduct! == idProduct)!;
+    for(let detail of detailRemove){
+      this.detailOrderService.deleteById(detail.idDetailOrderBill!).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.ngOnInit()
+        },
+        error: (err) => {
+          console.log(err);
+          this.ngOnInit()
+        }
+      })
     }
   }
 
+  /* Metodo que actualiza valor total y porcentaje de ganancia en el arreglo de productos del pedido */
   updateTotals(){
+    this.actualOrder!.totalValue! = 0;
     for(let detail of this.selectedProducts!){
-      if(detail.idDetailOrderBill! == parseInt(localStorage.getItem("actualOrder")!)){
-        console.log("entre a act porc")
-        detail.totalValue = detail.receivedQuantity! * detail.unitValue!;
-        detail.percentageProfit = Number((((detail.product!.saleValue! - detail.unitValue!) / detail.unitValue!)*100).toFixed(2));
-      }
+      detail.totalValue = detail.receivedQuantity! * detail.unitValue!;
+      detail.percentageProfit = Number((((detail.product!.saleValue! - detail.unitValue!) / detail.unitValue!)*100).toFixed(2));
+      this.actualOrder!.totalValue! += detail.totalValue;
     }
   }
 
+  /* Elimina del localStorage y de la base de datos el pedido actual */
   deleteOrder(){
     localStorage.removeItem("actualOrder");
     this.orderService.deleteById(this.actualOrder?.idOrderBill!).subscribe({
@@ -215,6 +270,22 @@ export class CreateOrderComponent implements OnInit {
       },
       error: (err) => {
         this.router.navigate(["/home/order/all"]);
+      }
+    })
+  }
+
+  /* Elimina el pedido del localStorage y guarda los ultimos cambios, actualiza el proveedor del pedido y vuelve a la pagina pedidos  */
+  updateSupplier(){
+    localStorage.removeItem("actualOrder");
+    this.orderService.addSupplier(this.actualOrder?.idOrderBill!, this.idSupplier).subscribe({
+      next: (order) => {
+        this.addProduct();
+        setTimeout(() => {
+          this.router.navigate(["/home/order/all"]);
+        }, 2000);
+      },
+      error: (err) => {
+        console.log(err);
       }
     })
   }

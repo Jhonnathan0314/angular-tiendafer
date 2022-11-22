@@ -87,11 +87,11 @@
                         <tr *ngFor="let detailOrder of selectedProducts">
                             <td>{{detailOrder.product?.name}}</td>
                             <td><input type="number" [(ngModel)]="detailOrder.orderedQuantity" name="orderedQuantityProduct" class="border"></td>
-                            <td><input type="number" [(ngModel)]="detailOrder.receivedQuantity" name="receivedQuantityProduct" (change)="updateTotal(detailOrder.idDetailOrderBill!)" class="border"></td>
-                            <td><input type="number" [(ngModel)]="detailOrder.unitValue" name="unitValueProduct" (change)="updateTotal(detailOrder.idDetailOrderBill!)" class="border"></td>
+                            <td><input type="number" [(ngModel)]="detailOrder.receivedQuantity" name="receivedQuantityProduct" (change)="updateTotals()" class="border"></td>
+                            <td><input type="number" [(ngModel)]="detailOrder.unitValue" name="unitValueProduct" (change)="updateTotals()" class="border"></td>
                             <td>{{detailOrder.totalValue}}</td>
                             <td>
-                                <input type="number" class="border" [(ngModel)]="detailOrder.product!.saleValue" name="saleValue" (change)="updateTotal(detailOrder.idDetailOrderBill!)">
+                                <input type="number" class="border" [(ngModel)]="detailOrder.product!.saleValue" name="saleValue" (change)="updateTotals()">
                             </td>
                             <td>{{detailOrder.percentageProfit}}%</td>
                             <td>
@@ -102,11 +102,11 @@
                 </table>
             </div>
             <div class="header_six">
-                <label>Valor compra: {{totalOrder}}</label>
+                <label>Valor compra: {{actualOrder?.totalValue}}</label>
             </div>
             <div class="action header_seven">
                 <button class="cancel" (click)="deleteOrder()">Cancelar</button>
-                <button>Registrar</button>
+                <button (click)="updateSupplier()">Registrar</button>
             </div>
         </div>
     </div>
