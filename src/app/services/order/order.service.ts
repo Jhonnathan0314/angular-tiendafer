@@ -30,6 +30,11 @@ export class OrderService {
     return this.http.post<OrderBill>(URL, orderBill);
   }
 
+  addSupplier(idOrderBill: number, idSupplier: number): Observable<OrderBill> {
+    let URL = "/api/orderbill/" + idOrderBill + "/supplier/" + idSupplier;
+    return this.http.put<OrderBill>(URL, {});
+  }
+
   deleteById(id: number): Observable<any>{
     let URL = "/api/orderbill/" + id;
     return this.http.delete<any>(URL);

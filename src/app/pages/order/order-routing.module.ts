@@ -7,7 +7,7 @@ import { OrderAllComponent } from './order-all/order-all.component';
 const routes: Routes = [
   { path: 'all', component: OrderAllComponent },
   { path: 'create', component: CreateOrderComponent },
-  { path: 'detail', component: DetailOrderComponent },
+  { path: 'detail/:_id', component: DetailOrderComponent },
   { path: '', redirectTo: 'all', pathMatch: 'full' }
 ];
 

@@ -5,6 +5,7 @@ import { SupplierRoutingModule } from './supplier-routing.module';
 import { SupplierAllComponent } from './supplier-all/supplier-all.component';
 import { CreateSupplierComponent } from './create-supplier/create-supplier.component';
 import { UpdateSupplierComponent } from './update-supplier/update-supplier.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { UpdateSupplierComponent } from './update-supplier/update-supplier.compo
   ],
   imports: [
     CommonModule,
-    SupplierRoutingModule
+    SupplierRoutingModule,
+    FormsModule
   ]
 })
 export class SupplierModule { }

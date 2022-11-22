@@ -3,19 +3,24 @@ import { CommonModule } from '@angular/common';
 
 import { OrderRoutingModule } from './order-routing.module';
 import { OrderAllComponent } from './order-all/order-all.component';
-import { CreateOrderComponent } from './create-order/create-order.component';
+import { CreateOrderComponent, CreateOrderComponentDialog } from './create-order/create-order.component';
 import { DetailOrderComponent } from './detail-order/detail-order.component';
+import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
   declarations: [
     OrderAllComponent,
     CreateOrderComponent,
+    CreateOrderComponentDialog,
     DetailOrderComponent
   ],
   imports: [
     CommonModule,
-    OrderRoutingModule
+    OrderRoutingModule,
+    FormsModule,
+    MatDialogModule
   ]
 })
 export class OrderModule { }

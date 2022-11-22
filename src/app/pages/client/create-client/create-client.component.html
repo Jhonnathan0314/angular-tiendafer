@@ -49,14 +49,14 @@
         <form>
             <div class="field">
                 <p>Cedula</p>
-                <input type="number">
+                <input type="number" placeholder="Cedula" [(ngModel)]="idClient" name="idClient">
             </div>
             <div class="field">
                 <p>Nombre completo</p>
-                <input type="text">
+                <input type="text" placeholder="Nombre completo" [(ngModel)]="name" name="name">
             </div>
             <div class="button">
-                <button>Crear</button>
+                <button (click)="createClient()">Crear</button>
             </div>
         </form>
     </div>

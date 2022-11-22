@@ -49,27 +49,25 @@
         <form>
             <div class="field">
                 <p>Nombre</p>
-                <input type="text">
+                <input type="text" placeholder="Nombre" [(ngModel)]="name" name="name">
             </div>
             <div class="field">
                 <p>Cantidad</p>
-                <input type="number">
+                <input type="number" placeholder="Cantidad" [(ngModel)]="quantityAvailable" name="quantityAvailable">
             </div>
             <div class="field">
                 <p>Valor venta</p>
-                <input type="number">
+                <input type="number" placeholder="Valor venta" [(ngModel)]="saleValue" name="saleValue">
             </div>
             <div class="field">
                 <p>Seccion</p>
-                <select name="" id="">
-                    <option value="" selected>Seleccione seccion</option>
-                    <option value="">Seccion 1</option>
-                    <option value="">Seccion 2</option>
-                    <option value="">Seccion 3</option>
+                <select [(ngModel)]="idSection" name="idSection">
+                    <option value="0" selected>SELECCIONE UNA SECCION</option>
+                    <option *ngFor="let section of sections" value="{{section.idSection}}">{{section.name}}</option>
                 </select>
             </div>
             <div class="button">
-                <button>Crear</button>
+                <button (click)="createProduct()">Crear</button>
             </div>
         </form>
     </div>

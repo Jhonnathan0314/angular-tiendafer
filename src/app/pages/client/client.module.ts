@@ -5,6 +5,7 @@ import { ClientRoutingModule } from './client-routing.module';
 import { ClientAllComponent } from './client-all/client-all.component';
 import { CreateClientComponent } from './create-client/create-client.component';
 import { UpdateClientComponent } from './update-client/update-client.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { UpdateClientComponent } from './update-client/update-client.component';
   ],
   imports: [
     CommonModule,
-    ClientRoutingModule
+    ClientRoutingModule,
+    FormsModule
   ]
 })
 export class ClientModule { }

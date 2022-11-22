@@ -49,10 +49,10 @@
         <form>
             <div class="field">
                 <p>Nombre</p>
-                <input type="text">
+                <input type="text" placeholder="Nombre seccion" [(ngModel)]="name" name="name" autocomplete="off">
             </div>
             <div class="button">
-                <input type="button" value="Crear">
+                <button (click)="createSection()">Crear</button>
             </div>
         </form>
     </div>

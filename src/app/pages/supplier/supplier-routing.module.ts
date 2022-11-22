@@ -7,7 +7,7 @@ import { UpdateSupplierComponent } from './update-supplier/update-supplier.compo
 const routes: Routes = [
   { path: 'all', component: SupplierAllComponent },
   { path: 'create', component: CreateSupplierComponent },
-  { path: 'update', component: UpdateSupplierComponent },
+  { path: 'update/:_id', component: UpdateSupplierComponent },
   { path: '', redirectTo: 'all', pathMatch: 'full' }
 ];
 

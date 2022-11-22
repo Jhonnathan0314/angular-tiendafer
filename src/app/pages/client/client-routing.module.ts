@@ -7,7 +7,7 @@ import { UpdateClientComponent } from './update-client/update-client.component';
 const routes: Routes = [
   { path: 'all', component: ClientAllComponent },
   { path: 'create', component: CreateClientComponent },
-  { path: 'update', component: UpdateClientComponent },
+  { path: 'update/:_id', component: UpdateClientComponent },
   { path: '', redirectTo: 'all', pathMatch: 'full' }
 ];
 

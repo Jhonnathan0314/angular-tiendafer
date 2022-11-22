@@ -49,18 +49,18 @@
         <form>
             <div class="field">
                 <p>Nit</p>
-                <input type="number">
+                <input type="number" placeholder="Nit" [(ngModel)]="idSupplier" name="idSupplier">
             </div>
             <div class="field">
                 <p>Nombre empresa</p>
-                <input type="text">
+                <input type="text" placeholder="Nombre empresa" [(ngModel)]="supplierName" name="supplierName">
             </div>
             <div class="field">
                 <p>Nombre vendedor</p>
-                <input type="text">
+                <input type="text" placeholder="Nombre vendedor" [(ngModel)]="sellerName" name="sellerName">
             </div>
             <div class="button">
-                <input type="button" value="Crear">
+                <button (click)="createSupplier()">Crear</button>
             </div>
         </form>
     </div>

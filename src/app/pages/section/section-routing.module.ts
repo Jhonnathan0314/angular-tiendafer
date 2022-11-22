@@ -7,7 +7,7 @@ import { UpdateSectionComponent } from './update-section/update-section.componen
 const routes: Routes = [
   { path: 'all', component: SectionAllComponent },
   { path: 'create', component: CreateSectionComponent },
-  { path: 'update', component: UpdateSectionComponent },
+  { path: 'update/:_id', component: UpdateSectionComponent },
   { path: '', redirectTo: 'all', pathMatch: 'full' }
 ];
 

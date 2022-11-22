@@ -49,29 +49,19 @@
         <form>
             <div class="field">
                 <p>Nit</p>
-                <input type="number" readonly>
+                <input type="number" [(ngModel)]="idSupplier" name="idSupplier" readonly>
             </div>
             <div class="field">
                 <p>Nombre empresa</p>
-                <input type="text">
+                <input type="text" placeholder="Nombre empresa" [(ngModel)]="supplierName" name="supplierName">
             </div>
             <div class="field">
                 <p>Nombre vendedor</p>
-                <input type="text">
+                <input type="text" placeholder="Nombre vendedor" [(ngModel)]="sellerName" name="sellerName">
             </div>
             <div class="button">
-                <input type="button" value="Crear">
+                <button (click)="updateSupplier()">Actualizar</button>
             </div>
         </form>
     </div>
-    <footer>
-        <div class="footer_content">
-            <p>Creado por:</p>
-            <a href="https://www.linkedin.com/in/jonatan-fernando-franco-cardenas-06b742251/" target="_blank">Jonatan Fernando Franco Cardenas</a>
-        </div>
-        <div class="footer_content">
-            <p>Informacion de contacto:</p>
-            <p>jffc314@gmail.com</p>
-        </div>
-    </footer>
 </div>

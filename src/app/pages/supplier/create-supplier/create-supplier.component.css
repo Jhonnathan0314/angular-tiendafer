@@ -27,19 +27,19 @@ form {
     font-size: 1.4em;
 }
 
-.field input, .button input {
+.field input, .button button {
     margin-top: 10px;
     height: 40px;
     width: 80%;
     border-radius: 15px;
 }
 
-.button input {
+.button button {
     color: #fff;
     background: rgb(14, 150, 89); 
     transition: background .2s;
 }
 
-.button input:hover {
+.button button:hover {
     background: rgb(10, 121, 71);  
 }

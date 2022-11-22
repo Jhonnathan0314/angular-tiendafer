@@ -48,36 +48,34 @@
         <p>Crear pedido</p>
         <div class="bill">
             <div class="header_one">
-                <label>Codigo pedido: </label>
+                <label>Codigo pedido: {{actualOrder?.idOrderBill}}</label>
                 <div class="select_container">
                     <label>Proveedor: </label>
-                    <select name="" id="">
-                        <option value="">Seleccione un proveedor</option>
-                        <option value="">Proveedor 1</option>
-                        <option value="">Proveedor 2</option>
-                        <option value="">Proveedor 3</option>
+                    <select [(ngModel)]="idSupplier" name="idSupplier" class="select">
+                        <option value="0" selected>SELECCIONE UN PROVEEDOR</option>
+                        <option *ngFor="let supplier of suppliers" value="{{supplier.idSupplier}}">{{supplier.supplierName}}</option>
                     </select>
                 </div>
             </div>
             <div class="header_two">
-                <label>Fecha: </label>
+                <label>Fecha: {{actualOrder?.date}}</label>
             </div>
             <div class="header_three search">
-                <input type="text" placeholder="Consultar producto">
-                <button>Consultar</button>
+                <input type="text" placeholder="Consultar producto" [(ngModel)]="productName" name="productName">
+                <button (click)="showOptions()">Consultar</button>
             </div>
             <div class="header_four">
-                <label>Nombre producto</label>
-                <label>Stock actual: </label>
-                <input type="number" name="" id="" placeholder="Cantidad">
-                <button>Agregar</button>
+                <label>{{actualProduct?.name}}</label>
+                <label>Stock actual: {{actualProduct?.quantityAvailable}}</label>
+                <button (click)="addProduct()">Agregar</button>
             </div>
             <div class="table_container header_five">
                 <table>
                     <thead>
                         <tr>
                             <td>Producto</td>
-                            <td>Cantidad</td>
+                            <td>Cantidad pedida</td>
+                            <td>Cantidad recibida</td>
                             <td>Valor unitario</td>
                             <td>Valor conjunto</td>
                             <td>Valor venta c/u</td>
@@ -86,66 +84,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Nombre producto</td>
-                            <td>5</td>
-                            <td>1000</td>
-                            <td>5000</td>
+                        <tr *ngFor="let detailOrder of selectedProducts">
+                            <td>{{detailOrder.product?.name}}</td>
+                            <td><input type="number" [(ngModel)]="detailOrder.orderedQuantity" name="orderedQuantityProduct" class="border"></td>
+                            <td><input type="number" [(ngModel)]="detailOrder.receivedQuantity" name="receivedQuantityProduct" (change)="updateTotal(detailOrder.idDetailOrderBill!)" class="border"></td>
+                            <td><input type="number" [(ngModel)]="detailOrder.unitValue" name="unitValueProduct" (change)="updateTotal(detailOrder.idDetailOrderBill!)" class="border"></td>
+                            <td>{{detailOrder.totalValue}}</td>
                             <td>
-                                <input type="number" placeholder="Valor venta" class="border">
+                                <input type="number" class="border" [(ngModel)]="detailOrder.product!.saleValue" name="saleValue" (change)="updateTotal(detailOrder.idDetailOrderBill!)">
                             </td>
-                            <td>15%</td>
+                            <td>{{detailOrder.percentageProfit}}%</td>
                             <td>
-                                <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nombre producto</td>
-                            <td>5</td>
-                            <td>1000</td>
-                            <td>5000</td>
-                            <td>
-                                <input type="number" placeholder="Valor venta" class="border">
-                            </td>
-                            <td>15%</td>
-                            <td>
-                                <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nombre producto</td>
-                            <td>5</td>
-                            <td>1000</td>
-                            <td>5000</td>
-                            <td>
-                                <input type="number" placeholder="Valor venta" class="border">
-                            </td>
-                            <td>15%</td>
-                            <td>
-                                <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nombre producto</td>
-                            <td>5</td>
-                            <td>1000</td>
-                            <td>5000</td>
-                            <td>
-                                <input type="number" placeholder="Valor venta" class="border">
-                            </td>
-                            <td>15%</td>
-                            <td>
-                                <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
+                                <a (click)="removeProduct(detailOrder.product?.idProduct!)"><img src="../../../../assets/img/delete.png" alt="delete"></a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="header_six">
-                <label>Valor compra: 25000</label>
+                <label>Valor compra: {{totalOrder}}</label>
             </div>
             <div class="action header_seven">
-                <button class="cancel" routerLink="/home/order/all">Cancelar</button>
+                <button class="cancel" (click)="deleteOrder()">Cancelar</button>
                 <button>Registrar</button>
             </div>
         </div>
