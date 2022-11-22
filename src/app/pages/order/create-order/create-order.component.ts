@@ -149,7 +149,14 @@ export class CreateOrderComponent implements OnInit {
       for(let detail of this.selectedProducts!){
         this.detailOrderService.update(detail, detail.idDetailOrderBill!, detail.product?.idProduct!, detail.orderBill?.idOrderBill!).subscribe({
           next: (res) => {
-            console.log("Guarde");
+            this.productService.update(detail.product!, detail.product?.idProduct!, detail.product?.section?.idSection!).subscribe({
+              next: (product) => {
+                detail.product = product;
+              },
+              error: (err) =>{
+                console.log(err);
+              }
+            })
           },
           error: (err) => {
             console.log(err);
@@ -158,7 +165,6 @@ export class CreateOrderComponent implements OnInit {
       }
     }
     if(this.actualProduct != undefined){
-      console.log("entre a addproduct if")
       let detail: DetailOrderBill = {
         idDetailOrderBill: 0,
         orderedQuantity: 0,
