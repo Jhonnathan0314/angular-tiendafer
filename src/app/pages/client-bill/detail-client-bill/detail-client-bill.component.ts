@@ -16,14 +16,16 @@ export class DetailClientBillComponent implements OnInit {
   detailBills?: DetailClientBill[];
   actualBill?: ClientBill;
 
-  constructor(private clientBillService: ClientBillService, private detailClientBillService: DetailClientBillService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private clientBillService: ClientBillService, private detailClientBillService: DetailClientBillService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(idBill => {
       this.idBill = parseInt(idBill.get("_id")!);
     })
     this.findActualBill();
-    this.findDetailBills();
+    setTimeout(() => {
+      this.findDetailBills();
+    }, 100);
   }
 
   findActualBill() {

@@ -47,13 +47,11 @@
     <div class="dashboard">
         <p>Pagos</p>
         <div class="search">
-            <select name="" id="">
-                <option value="">Seleccione un cliente</option>
-                <option value="">Cliente 1</option>
-                <option value="">Cliente 2</option>
-                <option value="">Cliente 3</option>
+            <select [(ngModel)]="idClient" name="idClient">
+                <option value="0" selected>Todos los clientes</option>
+                <option *ngFor="let client of clients" value="{{client.idClient}}">{{client.name}}</option>
             </select>
-            <button>Consultar</button>
+            <button (click)="filterByClient()">Consultar</button>
         </div>
         <div class="table_container">
             <table>
@@ -67,213 +65,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
+                    <tr *ngFor="let payment of pendingBills">
+                        <td>{{payment.client?.name}}</td>
+                        <td>{{numPendingBills}}</td>
+                        <td>{{totalPendingValue}}</td>
                         <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
+                            <a (click)="viewDetail(payment.client?.idClient!)"><img src="../../../../assets/img/view.png" alt="view"></a>
                         </td>
                         <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
-                        <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
-                        <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
-                        <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
-                        <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
-                        <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
-                        <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
-                        <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
-                        <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
-                        <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
-                        <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
-                        <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
-                        <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
-                        <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
-                        <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
-                        <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
-                        <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
-                        <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>16</td>
-                        <td>155000</td>
-                        <td>
-                            <a routerLink="/home/payment/client/all"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
+                            <a (click)="goPayment(payment.client?.idClient!)" routerLink="/home/payment/create"><img src="../../../../assets/img/pay.png" alt="pay"></a>
                         </td>
                     </tr>
                 </tbody>

@@ -13,10 +13,10 @@ import { OrderService } from 'src/app/services/order/order.service';
 export class DetailOrderComponent implements OnInit {
 
   idOrder?: number;
-  actualOrder?: OrderBill;
   detailOrders?: DetailOrderBill[];
+  actualOrder?: OrderBill;
 
-  constructor(private orderService: OrderService, private detailOrderService: DetailOrderBillService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private orderService: OrderService, private detailOrderService: DetailOrderBillService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(idOrder => {
