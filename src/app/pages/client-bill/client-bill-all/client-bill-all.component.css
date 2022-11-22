@@ -102,3 +102,18 @@ tbody img {
 .search select {
     border-radius: 15px 0 0 15px;
 }
+
+.options{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cancel {
+    background: rgb(255, 92, 92); 
+    transition: background .2s;
+}
+
+.cancel:hover {
+    background: rgb(255, 68, 68); 
+}

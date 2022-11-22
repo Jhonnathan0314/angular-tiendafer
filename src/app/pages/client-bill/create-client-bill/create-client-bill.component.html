@@ -48,29 +48,27 @@
         <p>Crear factura</p>
         <div class="bill">
             <div class="header_one">
-                <label>Codigo factura: </label>
+                <label>Codigo factura: {{actualBill?.idClientBill}}</label>
                 <div class="select_container">
                     <label>Cliente: </label>
-                    <select name="" id="">
-                        <option value="">Seleccione un cliente</option>
-                        <option value="">Cliente 1</option>
-                        <option value="">Cliente 2</option>
-                        <option value="">Cliente 3</option>
+                    <select [(ngModel)]="idClient" name="idClient" class="select">
+                        <option value="0" selected>SELECCIONE UN CLIENTE</option>
+                        <option *ngFor="let client of clients" value="{{client.idClient}}">{{client.name}}</option>
                     </select>
                 </div>
             </div>
             <div class="header_two">
-                <label>Fecha: </label>
+                <label>Fecha: {{actualBill?.date}}</label>
             </div>
             <div class="header_three search">
-                <input type="text" placeholder="Consultar producto">
-                <button>Consultar</button>
+                <input type="text" placeholder="Consultar producto" [(ngModel)]="productName" name="productName">
+                <button (click)="showOptions()">Consultar</button>
             </div>
             <div class="header_four">
-                <label>Nombre producto</label>
-                <label>Stock disponible: </label>
-                <input type="number" name="" id="" placeholder="Cantidad">
-                <button>Agregar</button>
+                <label>{{actualProduct?.name}}</label>
+                <label>Stock disponible: {{actualProduct?.quantityAvailable}}</label>
+                <input type="number" [(ngModel)]="actualQuantity" name="actualQuantity" placeholder="Cantidad">
+                <button (click)="addProduct()">Agregar</button>
             </div>
             <div class="table_container header_five">
                 <table>
@@ -84,51 +82,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Nombre producto</td>
-                            <td>5</td>
-                            <td>1000</td>
-                            <td>5000</td>
+                        <tr *ngFor="let detailBill of selectedProducts">
+                            <td>{{detailBill.product?.name}}</td>
+                            <td>{{detailBill.quantity}}</td>
+                            <td>{{detailBill.product?.saleValue}}</td>
+                            <td>{{detailBill.product?.saleValue! * detailBill.quantity!}}</td>
                             <td>
-                                <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nombre producto</td>
-                            <td>5</td>
-                            <td>1000</td>
-                            <td>5000</td>
-                            <td>
-                                <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nombre producto</td>
-                            <td>5</td>
-                            <td>1000</td>
-                            <td>5000</td>
-                            <td>
-                                <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nombre producto</td>
-                            <td>5</td>
-                            <td>1000</td>
-                            <td>5000</td>
-                            <td>
-                                <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
+                                <a (click)="removeProduct(detailBill.product?.idProduct!)"><img src="../../../../assets/img/delete.png" alt="delete"></a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="header_six">
-                <label>Valor compra: 25000</label>
+                <label>Valor compra: {{actualBill?.totalValue}}</label>
             </div>
             <div class="action header_seven">
-                <button class="cancel" routerLink="/home/clientbill/all">Cancelar</button>
-                <button>Registrar</button>
+                <button class="cancel" (click)="deleteBill()">Cancelar</button>
+                <button (click)="updateClient()">Registrar</button>
             </div>
         </div>
     </div>

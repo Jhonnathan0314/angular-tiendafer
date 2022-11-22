@@ -3,19 +3,24 @@ import { CommonModule } from '@angular/common';
 
 import { ClientBillRoutingModule } from './client-bill-routing.module';
 import { ClientBillAllComponent } from './client-bill-all/client-bill-all.component';
-import { CreateClientBillComponent } from './create-client-bill/create-client-bill.component';
+import { CreateClientBillComponent, CreateClientBillComponentDialog } from './create-client-bill/create-client-bill.component';
 import { DetailClientBillComponent } from './detail-client-bill/detail-client-bill.component';
+import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
   declarations: [
     ClientBillAllComponent,
     CreateClientBillComponent,
+    CreateClientBillComponentDialog,
     DetailClientBillComponent
   ],
   imports: [
     CommonModule,
-    ClientBillRoutingModule
+    ClientBillRoutingModule,
+    FormsModule,
+    MatDialogModule
   ]
 })
 export class ClientBillModule { }

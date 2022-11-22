@@ -59,243 +59,27 @@
                         <td>Valor pendiente</td>
                         <td>Valor total</td>
                         <td>Detalle factura</td>
-                        <td>Elminar</td>
+                        <td>Eliminar</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
+                    <tr *ngFor="let bill of bills">
+                        <td>{{bill.client?.name}}</td>
+                        <td>{{bill.date}}</td>
+                        <td>{{bill.pendingValue}}</td>
+                        <td>{{bill.totalValue}}</td>
                         <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
+                            <a (click)="viewDetail(bill.idClientBill!)"><img src="../../../../assets/img/view.png" alt="view"></a>
                         </td>
                         <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre cliente</td>
-                        <td>10-05-2022</td>
-                        <td>0</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/clientbill/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
+                            <a (click)="deleteBill(bill.idClientBill!)"><img src="../../../../assets/img/delete.png" alt="delete"></a>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="action">
-            <button routerLink="/home/clientbill/create">Crear</button>
+            <button (click)="showOptions()">Crear</button>
         </div>
     </div>
 </div>

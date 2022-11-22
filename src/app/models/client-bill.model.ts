@@ -5,6 +5,6 @@ export interface ClientBill{
     totalValue?: number;
     pendingValue?: number;
     date?: string;
-    isPending?: boolean;
+    pending?: string;
     client?: Client;
 }

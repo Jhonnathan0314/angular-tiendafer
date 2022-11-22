@@ -46,7 +46,7 @@
     </div>
     <div class="dashboard">
         <p>Detalle factura</p>
-        <label class="subtitle">Nombre cliente - Fecha</label>
+        <label class="subtitle">{{actualBill!.client?.name}} ---- {{actualBill!.date}}</label>
         <div class="table_container">
             <table>
                 <thead>
@@ -58,119 +58,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre producto</td>
-                        <td>3</td>
-                        <td>7500</td>
-                        <td>22500</td>
+                    <tr *ngFor="let detailBill of detailBills">
+                        <td>{{detailBill.product?.name}}</td>
+                        <td>{{detailBill.quantity}}</td>
+                        <td>{{detailBill.unitValue}}</td>
+                        <td>{{detailBill.totalValue}}</td>
                     </tr>
                 </tbody>
             </table>

@@ -139,10 +139,6 @@ export class CreateOrderComponent implements OnInit {
     })
   }
 
-  setSupplier(){
-    
-  }
-
   /* Guarda los productos que coincidan con la busqueda y los envia al modal, seguidamente abre el modal
    * Cuando finaliza, en caso de haber seleccionado un producto se guarda su id
   */
