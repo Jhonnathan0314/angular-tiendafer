@@ -47,8 +47,8 @@
     <div class="dashboard">
         <p>Clientes</p>
         <div class="search">
-            <input type="text">
-            <button>Consultar</button>
+            <input type="text" [(ngModel)]="searchName" name="searchName" placeholder="Nombre a buscar (vacio para buscar todos)">
+            <button (click)="findByName()">Consultar</button>
         </div>
         <div class="table_container">
             <table>

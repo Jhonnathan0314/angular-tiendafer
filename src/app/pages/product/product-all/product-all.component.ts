@@ -13,6 +13,7 @@ import { SectionService } from 'src/app/services/section/section.service';
 export class ProductAllComponent implements OnInit {
 
   products?: Product[];
+  searchName?: string;
 
   constructor(private productService: ProductService, private router: Router) { }
 
@@ -23,7 +24,11 @@ export class ProductAllComponent implements OnInit {
   findProducts(){
     this.productService.findAll().subscribe({
       next: (products) => {
-        this.products = products;
+        if(this.searchName == undefined){
+          this.products = products;
+        }else{
+          this.products = products.filter(product => product.name?.toUpperCase().includes(this.searchName?.toUpperCase()!));
+        }
       },
       error: (err) => {
         console.log(err);
@@ -44,5 +49,9 @@ export class ProductAllComponent implements OnInit {
         this.ngOnInit()
       }
     })
+  }
+
+  findByName(){
+    this.ngOnInit()
   }
 }

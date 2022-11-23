@@ -12,6 +12,7 @@ export class SectionAllComponent implements OnInit {
 
   actualSection?: Section
   sections?: Section[]
+  searchName?: string;
 
   constructor(private sectionService: SectionService, private router: Router) { }
 
@@ -22,7 +23,12 @@ export class SectionAllComponent implements OnInit {
   findSections(){
     this.sectionService.findAll().subscribe({
       next: (sections) => {
-        this.sections = sections;
+        if(this.searchName == undefined){
+          this.sections = sections;
+        }else{
+          
+          this.sections = sections.filter(section => section.name?.toUpperCase().includes(this.searchName?.toUpperCase()!));
+        }
       },
       error: (err) => {
         console.log(err);
@@ -45,4 +51,7 @@ export class SectionAllComponent implements OnInit {
     })
   }
 
+  findByName(){
+    this.ngOnInit();
+  }
 }

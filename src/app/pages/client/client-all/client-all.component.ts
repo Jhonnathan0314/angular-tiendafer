@@ -11,6 +11,7 @@ import { ClientService } from 'src/app/services/client/client.service';
 export class ClientAllComponent implements OnInit {
 
   clients?: Client[];
+  searchName?: string;
 
   constructor(private clientService: ClientService, private router: Router) { }
 
@@ -21,7 +22,11 @@ export class ClientAllComponent implements OnInit {
   findClients() {
     this.clientService.findAll().subscribe({
       next: (clients) => {
-        this.clients = clients;
+        if(this.searchName == undefined){
+          this.clients = clients;
+        }else{
+          this.clients = clients.filter(client => client.name?.toUpperCase().includes(this.searchName?.toUpperCase()!));
+        }
       },
       error: (err) => {
         console.log(err)
@@ -42,5 +47,9 @@ export class ClientAllComponent implements OnInit {
         this.ngOnInit()
       }
     })
+  }
+
+  findByName(){
+    this.ngOnInit()
   }
 }

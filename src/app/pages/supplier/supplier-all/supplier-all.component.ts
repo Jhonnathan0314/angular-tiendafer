@@ -11,6 +11,7 @@ import { SupplierService } from 'src/app/services/supplier/supplier.service';
 export class SupplierAllComponent implements OnInit {
 
   suppliers?: Supplier[]
+  searchName?: string;
 
   constructor(private supplierService: SupplierService, private router: Router) { }
 
@@ -21,7 +22,11 @@ export class SupplierAllComponent implements OnInit {
   findSuppliers(){
     this.supplierService.findAll().subscribe({
       next: (suppliers) => {
-        this.suppliers = suppliers;
+        if(this.searchName == undefined){
+          this.suppliers = suppliers;
+        }else{
+          this.suppliers = suppliers.filter(supplier => supplier.supplierName?.toUpperCase().includes(this.searchName?.toUpperCase()!));
+        }
       },
       error: (err) =>{
         console.log(err);
@@ -44,4 +49,7 @@ export class SupplierAllComponent implements OnInit {
     })
   }
 
+  findByName(){
+    this.ngOnInit()
+  }
 }
