@@ -14,27 +14,30 @@ import { PaymentService } from 'src/app/services/payment/payment.service';
 })
 export class PaymentAllComponent implements OnInit {
 
-  idClient: number = 0;
+  idClient?: number = -1;
 
-  clients?: Client[];
+  allClients?: Client[];
+  filterClients?: Client[];
   payments?: Payment[];
   pendingBills?: ClientBill[];
-
-  numPendingBills?: number;
-  totalPendingValue?: number;
 
   constructor(private clientService: ClientService, private paymentService: PaymentService, private clientBill: ClientBillService, private router: Router) { }
 
   ngOnInit(): void {
     this.findClients();
-    this.findBills();
+    // this.findBills();
     // this.findPayments();
   }
 
   findClients(){
     this.clientService.findAll().subscribe({
       next: (clients) => {
-        this.clients = clients;
+        this.allClients = clients;
+        if(this.idClient! > 0){
+          this.filterClients = clients.filter(client => client.idClient == this.idClient);
+        }else{
+          this.filterClients = clients;
+        }
       },
       error: (err) => {
         console.log(err);
@@ -46,6 +49,7 @@ export class PaymentAllComponent implements OnInit {
     this.clientBill.findAll().subscribe({
       next: (bills) => {
         bills.sort((a, b) => (a.client?.idClient! < b.client?.idClient! ? -1 : 1));
+        bills = bills.filter(bill => bill.pendingValue! > 0);
       },
       error: (err) => {
         console.log(err);
@@ -65,15 +69,15 @@ export class PaymentAllComponent implements OnInit {
   }
 
   filterByClient(){
-
+    this.ngOnInit();
   }
 
-  viewDetail(idClient: number){
-
+  viewBills(idClient: number){
+    this.router.navigate(["/home/payment/client/all/" + idClient]);
   }
 
   goPayment(idClient: number){
-
+    this.router.navigate(["/home/payment/create/" + idClient]);
   }
 
 }

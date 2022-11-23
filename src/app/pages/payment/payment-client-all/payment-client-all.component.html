@@ -45,7 +45,8 @@
         </div>
     </div>
     <div class="dashboard">
-        <p>Facturas pendientes: nombre cliente</p>
+        <p>Facturas pendientes</p>
+        <p>{{client?.name}}</p>
         <div class="table_container">
             <table>
                 <thead>
@@ -54,224 +55,22 @@
                         <td>Valor total</td>
                         <td>Valor pendiente</td>
                         <td>Detalle factura</td>
-                        <td>Elminar</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
+                    <tr *ngFor="let bill of bills">
+                        <td>{{bill.date}}</td>
+                        <td>{{bill.totalValue}}</td>
+                        <td>{{bill.pendingValue}}</td>
                         <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10-05-2022</td>
-                        <td>58500</td>
-                        <td>58500</td>
-                        <td>
-                            <a routerLink="/home/payment/client/detail"><img src="../../../../assets/img/view.png" alt="view"></a>
-                        </td>
-                        <td>
-                            <a routerLink="#"><img src="../../../../assets/img/delete.png" alt="delete"></a>
+                            <a (click)="viewDetail(bill.idClientBill!, bill.client?.idClient!)"><img src="../../../../assets/img/view.png" alt="view"></a>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="action">
-            <button>Crear</button>
+            <button routerLink="/home/payment/all">Volver</button>
         </div>
     </div>
 </div>

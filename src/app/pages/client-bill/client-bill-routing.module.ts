@@ -6,7 +6,7 @@ import { DetailClientBillComponent } from './detail-client-bill/detail-client-bi
 
 const routes: Routes = [
   { path: 'all', component: ClientBillAllComponent },
-  { path: 'create/:_isPending', component: CreateClientBillComponent },
+  { path: 'create/:_isPending/:_idClient', component: CreateClientBillComponent },
   { path: 'detail/:_id', component: DetailClientBillComponent },
   { path: '', redirectTo: 'all', pathMatch: 'full' }
 ];

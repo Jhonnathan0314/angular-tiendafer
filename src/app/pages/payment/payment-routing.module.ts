@@ -7,9 +7,9 @@ import { PaymentClientDetailComponent } from './payment-client-detail/payment-cl
 
 const routes: Routes = [
   { path: 'all', component: PaymentAllComponent },
-  { path: 'create', component: CreatePaymentComponent },
-  { path: 'client/all', component: PaymentClientAllComponent },
-  { path: 'client/detail', component: PaymentClientDetailComponent },
+  { path: 'create/:_id', component: CreatePaymentComponent },
+  { path: 'client/all/:_id', component: PaymentClientAllComponent },
+  { path: 'client/detail/:_idClient/:_idBill', component: PaymentClientDetailComponent },
   { path: '', redirectTo: 'all', pathMatch: 'full' }
 ];
 

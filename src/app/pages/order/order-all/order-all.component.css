@@ -102,3 +102,29 @@ tbody img {
 .search select {
     border-radius: 15px 0 0 15px;
 }
+
+.options{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.red {
+    background: rgb(255, 92, 92) !important; 
+    transition: background .2s;
+}
+
+.red:hover {
+    background: rgb(255, 68, 68) !important; 
+}
+
+.header_one, .modal_title {
+    text-align: center;
+}
+
+.select_container select {
+    height: 30px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background: #ddd;
+}

@@ -1,0 +1,16 @@
+<div mat-dialog-content>
+    <p class="modal_title">Seleccione el cliente:</p>
+    <div class="header_one">
+        <div class="select_container">
+          <select [(ngModel)]="idClient" name="idClient" class="select">
+            <option *ngFor="let client of clients" value="{{client.idClient}}">{{client.name}}</option>
+          </select>
+        </div>
+      </div>
+</div>
+<div mat-dialog-actions>
+    <div class="action options">
+        <button class="red" (click)="onNoClick()">Cancelar</button>
+        <button [mat-dialog-close]="idClient" cdkFocusInitial>Seleccionar</button>
+    </div>
+</div>

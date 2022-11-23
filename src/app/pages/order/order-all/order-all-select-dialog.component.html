@@ -1,0 +1,16 @@
+<div mat-dialog-content>
+    <p class="modal_title">Seleccione el proveedor:</p>
+    <div class="header_one">
+        <div class="select_container">
+          <select [(ngModel)]="idSupplier" name="idSupplier" class="select">
+            <option *ngFor="let supplier of suppliers" value="{{supplier.idSupplier}}">{{supplier.supplierName}}</option>
+          </select>
+        </div>
+      </div>
+</div>
+<div mat-dialog-actions>
+    <div class="action options">
+        <button class="red" (click)="onNoClick()">Cancelar</button>
+        <button [mat-dialog-close]="idSupplier" cdkFocusInitial>Seleccionar</button>
+    </div>
+</div>

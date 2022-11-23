@@ -2,8 +2,10 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ClientBill } from 'src/app/models/client-bill.model';
+import { Client } from 'src/app/models/client.model';
 import { Product } from 'src/app/models/product.model';
 import { ClientBillService } from 'src/app/services/client-bill/client-bill.service';
+import { ClientService } from 'src/app/services/client/client.service';
 
 @Component({
   selector: 'app-client-bill-all',
@@ -13,17 +15,30 @@ import { ClientBillService } from 'src/app/services/client-bill/client-bill.serv
 export class ClientBillAllComponent implements OnInit {
 
   bills?: ClientBill[];
+  clients?: Client[];
 
-  constructor(private clientBillService: ClientBillService, private router: Router, private dialog: MatDialog) { }
+  constructor(private clientBillService: ClientBillService, private clientService: ClientService, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.findBills();
+    this.findClients();
   }
 
   findBills(){
     this.clientBillService.findAll().subscribe({
       next: (bills) => {
         this.bills = bills;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    })
+  }
+
+  findClients(){
+    this.clientService.findAll().subscribe({
+      next: (clients) => {
+        this.clients = clients;
       },
       error: (err) => {
         console.log(err);
@@ -46,10 +61,6 @@ export class ClientBillAllComponent implements OnInit {
     })
   }
 
-  showModal(isPending: boolean){
-    this.router.navigate(["/home/clientbill/create/" + isPending])
-  }
-
   showOptions(){
     const dialogRef = this.dialog.open(ClientBillAllComponentDialog, {
       width: '600px',
@@ -58,9 +69,26 @@ export class ClientBillAllComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result != undefined){
-        this.showModal(result);
+        this.askClient(result);
       }
     });
+  }
+
+  askClient(isPending: boolean){
+    const dialogRef = this.dialog.open(ClientBillAllSelectComponentDialog, {
+      width: '600px',
+      data: this.clients
+    });
+
+    dialogRef.afterClosed().subscribe(idClient => {
+      if(idClient != undefined){
+        this.goCreate(isPending, idClient);
+      }
+    });
+  }
+
+  goCreate(isPending: boolean, idClient: number){
+    this.router.navigate(["/home/clientbill/create/" + isPending + "/" + idClient])
   }
 }
 
@@ -89,5 +117,24 @@ export class ClientBillAllComponentDialog implements OnInit {
 
   setFalse(){
     this.dialogRef.close(false);
+  }
+}
+
+@Component({
+  selector: 'app-modal-product',
+  templateUrl: './client-bill-all-select-dialog.component.html',
+  styleUrls: ['./client-bill-all.component.css']
+})
+export class ClientBillAllSelectComponentDialog implements OnInit {
+
+  idClient: number = 0;
+
+  constructor( public dialogRef: MatDialogRef<ClientBillAllSelectComponentDialog>, @Inject(MAT_DIALOG_DATA) public clients: Client[]) { }
+
+  ngOnInit(): void {
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

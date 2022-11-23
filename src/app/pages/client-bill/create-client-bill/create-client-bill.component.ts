@@ -22,7 +22,7 @@ export class CreateClientBillComponent implements OnInit {
   actualBill?: ClientBill;
 
   /* Id del proveedor seleccionado */
-  idClient: number = 0;
+  idClient?: number;
 
   /* Fecha actual */
   actualDate?: string;
@@ -56,25 +56,23 @@ export class CreateClientBillComponent implements OnInit {
    * - Guarda los productos agregados al pedido en curso
   */
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe(isPending => {
-      this.validateBill(isPending.get("_isPending")!);
-      this.findClients();
-      this.findProducts();
-      this.findSelectedProducts();
+    this.activatedRoute.paramMap.subscribe(res => {
+      this.idClient = parseInt(res.get("_idClient")!);
+      this.validateBill(res.get("_isPending")!, parseInt(res.get("_idClient")!));
     })
   }
 
   /* Si no existe un pedido crea uno nuevo, de lo contrario va a loadOrder() */
-  validateBill(isPending: string){
+  validateBill(isPending: string, idClient: number){
     if(localStorage.getItem("actualBill") == null){
-      this.createBill(isPending);
+      this.createBill(isPending, idClient);
     }else{
       this.loadBill();
     }
   }
 
   /* Crea un nuevo pedido con la fecha actual y el resto de atributos en 0 */
-  createBill(_isPending: string){
+  createBill(_isPending: string, idClient: number){
     this.actualDate = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
     let bill: ClientBill = {
       idClientBill: 0,
@@ -82,12 +80,12 @@ export class CreateClientBillComponent implements OnInit {
       date: this.actualDate,
       pending: _isPending
     }
-    console.log(bill)
-    this.clientBillService.create(bill, this.idClient!).subscribe({
+    this.clientBillService.create(bill, idClient).subscribe({
       next: (bill) => {
         this.actualBill = bill;
         localStorage.setItem("actualBill", bill.idClientBill+"");
-        console.log(bill)
+        console.log(bill);
+        this.findClients();
       },
       error: (err) => {
         console.log(err);
@@ -101,6 +99,8 @@ export class CreateClientBillComponent implements OnInit {
     this.clientBillService.findById(idBill).subscribe({
       next: (bill) => {
         this.actualBill = bill;
+        this.idClient = bill.client?.idClient;
+        this.findClients();
       },
       error: (err) => {
         console.log(err);
@@ -113,6 +113,7 @@ export class CreateClientBillComponent implements OnInit {
     this.clientService.findAll().subscribe({
       next: (clients) => {
         this.clients = clients;
+        this.findProducts();
       },
       error: (err) => {
         console.log(err);
@@ -125,6 +126,7 @@ export class CreateClientBillComponent implements OnInit {
     this.productService.findAll().subscribe({
       next: (products) => {
         this.products = products;
+        this.findSelectedProducts();
       },
       error: (err) => {
         console.log(err);
@@ -266,19 +268,12 @@ export class CreateClientBillComponent implements OnInit {
   }
 
   /* Elimina el pedido del localStorage y guarda los ultimos cambios, actualiza el proveedor del pedido y vuelve a la pagina pedidos  */
-  updateClient(){
+  finishCreation(){
     localStorage.removeItem("actualBill");
-    this.clientBillService.addClient(this.actualBill?.idClientBill!, this.idClient).subscribe({
-      next: (order) => {
-        this.addProduct();
-        setTimeout(() => {
-          this.router.navigate(["/home/clientbill/all"]);
-        }, 2000);
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    })
+    this.addProduct();
+    setTimeout(() => {
+      this.router.navigate(["/home/clientbill/all"]);
+    }, 1000);
   }
 }
 

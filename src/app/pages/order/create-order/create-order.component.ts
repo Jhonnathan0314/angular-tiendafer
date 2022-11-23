@@ -1,6 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { OrderBill } from 'src/app/models/order.model';
 import { Product } from 'src/app/models/product.model';
@@ -45,7 +45,7 @@ export class CreateOrderComponent implements OnInit {
 
   constructor(private orderService: OrderService, private detailOrderService: DetailOrderBillService, 
     private supplierService: SupplierService, private productService: ProductService, 
-    private router: Router, private dialog: MatDialog) {
+    private router: Router, private activatedRoute: ActivatedRoute, private dialog: MatDialog) {
   }
 
   /* Antes de iniciar valida:
@@ -55,33 +55,34 @@ export class CreateOrderComponent implements OnInit {
    * - Guarda los productos agregados al pedido en curso
   */
   ngOnInit(): void {
-    this.validateOrder();
-    this.findSuppliers();
-    this.findProducts();
-    this.findSelectedProducts();
+    this.activatedRoute.paramMap.subscribe(idSupplier => {
+      this.idSupplier = parseInt(idSupplier.get("_id")!);
+      this.validateOrder(parseInt(idSupplier.get("_id")!));
+    })
   }
 
   /* Si no existe un pedido crea uno nuevo, de lo contrario va a loadOrder() */
-  validateOrder(){
+  validateOrder(idSupplier: number){
     if(localStorage.getItem("actualOrder") == null){
-      this.createOrder();
+      this.createOrder(idSupplier);
     }else{
       this.loadOrder();
     }
   }
 
   /* Crea un nuevo pedido con la fecha actual y el resto de atributos en 0 */
-  createOrder(){
+  createOrder(idSupplier: number){
     this.actualDate = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
     let order: OrderBill = {
       idOrderBill: 0,
       totalValue: 0,
       date: this.actualDate
     }
-    this.orderService.create(order, this.idSupplier!).subscribe({
+    this.orderService.create(order, idSupplier).subscribe({
       next: (order) => {
         this.actualOrder = order;
         localStorage.setItem("actualOrder", order.idOrderBill+"");
+        this.findSuppliers();
       },
       error: (err) => {
         console.log(err);
@@ -95,6 +96,7 @@ export class CreateOrderComponent implements OnInit {
     this.orderService.findById(idOrder).subscribe({
       next: (order) => {
         this.actualOrder = order;
+        this.findSuppliers();
       },
       error: (err) => {
         console.log(err);
@@ -107,6 +109,7 @@ export class CreateOrderComponent implements OnInit {
     this.supplierService.findAll().subscribe({
       next: (suppliers) => {
         this.suppliers = suppliers;
+        this.findProducts();
       },
       error: (err) => {
         console.log(err);
@@ -119,6 +122,7 @@ export class CreateOrderComponent implements OnInit {
     this.productService.findAll().subscribe({
       next: (products) => {
         this.products = products;
+        this.findSelectedProducts();
       },
       error: (err) => {
         console.log(err);

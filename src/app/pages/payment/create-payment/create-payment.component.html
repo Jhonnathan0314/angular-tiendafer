@@ -49,14 +49,14 @@
         <form>
             <div class="field">
                 <p>Cliente</p>
-                <input type="text" value="Nombre cliente" readonly>
+                <input type="text" value="{{client?.name}}" readonly>
             </div>
             <div class="field">
                 <p>Valor a pagar</p>
-                <input type="number">
+                <input type="number" [(ngModel)]="cash" name="cash">
             </div>
             <div class="button">
-                <button>Confirmar</button>
+                <button (click)="generatePayment()">Confirmar</button>
             </div>
         </form>
     </div>
