@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './pages/global/login/login.component';
 import { HomeComponent } from './pages/global/home/home.component';
 import { FooterComponent } from './pages/global/footer/footer.component';
+import { HeaderService } from './pages/global/header/header.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { FooterComponent } from './pages/global/footer/footer.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ HeaderService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

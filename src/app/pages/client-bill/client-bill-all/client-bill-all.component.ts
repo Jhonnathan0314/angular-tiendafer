@@ -6,18 +6,27 @@ import { Client } from 'src/app/models/client.model';
 import { Product } from 'src/app/models/product.model';
 import { ClientBillService } from 'src/app/services/client-bill/client-bill.service';
 import { ClientService } from 'src/app/services/client/client.service';
+import { HeaderService } from '../../global/header/header.service';
 
 @Component({
   selector: 'app-client-bill-all',
   templateUrl: './client-bill-all.component.html',
-  styleUrls: ['./client-bill-all.component.css']
+  styleUrls: ['./client-bill-all.component.css'],
+  providers: [
+    HeaderService
+  ]
 })
 export class ClientBillAllComponent implements OnInit {
 
   bills?: ClientBill[];
   clients?: Client[];
 
-  constructor(private clientBillService: ClientBillService, private clientService: ClientService, private router: Router, private dialog: MatDialog) { }
+  constructor(
+    private clientBillService: ClientBillService, 
+    private clientService: ClientService,
+    private headerService: HeaderService,
+    private router: Router, 
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.findBills();
@@ -25,6 +34,8 @@ export class ClientBillAllComponent implements OnInit {
   }
 
   findBills(){
+    this.headerService.show();
+
     this.clientBillService.findAll().subscribe({
       next: (bills) => {
         this.bills = bills;

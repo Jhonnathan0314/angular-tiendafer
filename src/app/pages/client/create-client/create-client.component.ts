@@ -2,20 +2,28 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Client } from 'src/app/models/client.model';
 import { ClientService } from 'src/app/services/client/client.service';
+import { HeaderService } from '../../global/header/header.service';
 
 @Component({
   selector: 'app-create-client',
   templateUrl: './create-client.component.html',
-  styleUrls: ['./create-client.component.css']
+  styleUrls: ['./create-client.component.css'],
+  providers: [
+    HeaderService
+  ]
 })
 export class CreateClientComponent implements OnInit {
 
   idClient?: number;
   name?: string;
 
-  constructor(private clientService: ClientService, private router: Router) { }
+  constructor(
+    private clientService: ClientService,
+    private headerService: HeaderService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.headerService.show();
   }
 
   createClient(){

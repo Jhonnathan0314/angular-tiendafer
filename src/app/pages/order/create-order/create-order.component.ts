@@ -10,11 +10,15 @@ import { ProductService } from 'src/app/services/product/product.service';
 import { SupplierService } from 'src/app/services/supplier/supplier.service';
 import { DetailOrderBill } from 'src/app/models/detail-order-bill.model';
 import { DetailOrderBillService } from 'src/app/services/detail-order-bill/detail-order-bill.service';
+import { HeaderService } from '../../global/header/header.service';
 
 @Component({
   selector: 'app-create-order',
   templateUrl: './create-order.component.html',
-  styleUrls: ['./create-order.component.css']
+  styleUrls: ['./create-order.component.css'],
+  providers: [
+    HeaderService
+  ]
 })
 export class CreateOrderComponent implements OnInit {
 
@@ -43,9 +47,15 @@ export class CreateOrderComponent implements OnInit {
   /* Arreglo que tiene todos los productos */
   products?: Product[];
 
-  constructor(private orderService: OrderService, private detailOrderService: DetailOrderBillService, 
-    private supplierService: SupplierService, private productService: ProductService, 
-    private router: Router, private activatedRoute: ActivatedRoute, private dialog: MatDialog) {
+  constructor(
+    private orderService: OrderService, 
+    private detailOrderService: DetailOrderBillService, 
+    private supplierService: SupplierService, 
+    private productService: ProductService,
+    private headerService: HeaderService,
+    private router: Router, 
+    private activatedRoute: ActivatedRoute,
+     private dialog: MatDialog) {
   }
 
   /* Antes de iniciar valida:
@@ -63,6 +73,8 @@ export class CreateOrderComponent implements OnInit {
 
   /* Si no existe un pedido crea uno nuevo, de lo contrario va a loadOrder() */
   validateOrder(idSupplier: number){
+    this.headerService.show();
+
     if(localStorage.getItem("actualOrder") == null){
       this.createOrder(idSupplier);
     }else{

@@ -4,11 +4,15 @@ import { ClientBill } from 'src/app/models/client-bill.model';
 import { DetailClientBill } from 'src/app/models/detail-client-bill.model';
 import { ClientBillService } from 'src/app/services/client-bill/client-bill.service';
 import { DetailClientBillService } from 'src/app/services/detail-client-bill/detail-client-bill.service';
+import { HeaderService } from '../../global/header/header.service';
 
 @Component({
   selector: 'app-detail-client-bill',
   templateUrl: './detail-client-bill.component.html',
-  styleUrls: ['./detail-client-bill.component.css']
+  styleUrls: ['./detail-client-bill.component.css'],
+  providers: [
+    HeaderService
+  ]
 })
 export class DetailClientBillComponent implements OnInit {
 
@@ -16,7 +20,11 @@ export class DetailClientBillComponent implements OnInit {
   detailBills?: DetailClientBill[];
   actualBill?: ClientBill;
 
-  constructor(private clientBillService: ClientBillService, private detailClientBillService: DetailClientBillService, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private clientBillService: ClientBillService, 
+    private detailClientBillService: DetailClientBillService,
+    private headerService: HeaderService,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(idBill => {
@@ -29,6 +37,8 @@ export class DetailClientBillComponent implements OnInit {
   }
 
   findActualBill() {
+    this.headerService.show();
+
     this.clientBillService.findById(this.idBill!).subscribe({
       next: (bill) => {
         this.actualBill = bill;

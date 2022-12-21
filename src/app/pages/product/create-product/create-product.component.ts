@@ -4,11 +4,15 @@ import { Product } from 'src/app/models/product.model';
 import { Section } from 'src/app/models/section.model';
 import { ProductService } from 'src/app/services/product/product.service';
 import { SectionService } from 'src/app/services/section/section.service';
+import { HeaderService } from '../../global/header/header.service';
 
 @Component({
   selector: 'app-create-product',
   templateUrl: './create-product.component.html',
-  styleUrls: ['./create-product.component.css']
+  styleUrls: ['./create-product.component.css'],
+  providers: [
+    HeaderService
+  ]
 })
 export class CreateProductComponent implements OnInit {
 
@@ -19,13 +23,19 @@ export class CreateProductComponent implements OnInit {
   idSection: number = 0;
   sections?: Section[];
 
-  constructor(private productService: ProductService, private sectionService: SectionService, private router: Router) { }
+  constructor(
+    private productService: ProductService, 
+    private sectionService: SectionService,
+    private headerService: HeaderService, 
+    private router: Router) { }
 
   ngOnInit(): void {
     this.findSections()
   }
 
   findSections(){
+    this.headerService.show();
+
     this.sectionService.findAll().subscribe({
       next: (sections) => {
         this.sections = sections;

@@ -1,0 +1,47 @@
+<div class="container" *ngIf="headerService.showMenu">
+    <div class="menu">
+        <div class="logo">
+            <a (click)="goHome()"><img src="../../../../assets/img/logoTienda.png" alt="logo"></a>
+        </div>
+        <div class="menu_option">
+            <a (click)="goSection()">
+                <button>Secciones</button>
+            </a>
+        </div>
+        <div class="menu_option">
+            <a (click)="goProduct()">
+                <button>Productos</button>
+            </a>
+        </div>
+        <div class="menu_option">
+            <a (click)="goProvider()">
+                <button>Proveedores</button>
+            </a>
+        </div>
+        <div class="menu_option">
+            <a (click)="goOrder()">
+                <button>Pedidos</button>
+            </a>
+        </div>
+        <div class="menu_option">
+            <a (click)="goClient()">
+                <button>Clientes</button>
+            </a>
+        </div>
+        <div class="menu_option">
+            <a (click)="goClientBill()">
+                <button>Facturas</button>
+            </a>
+        </div>
+        <div class="menu_option">
+            <a (click)="goPayment()">
+                <button>Pagos</button>
+            </a>
+        </div>
+        <div class="menu_option">
+            <a (click)="goHome()">
+                <button>Reportes</button>
+            </a>
+        </div>
+    </div>
+</div>

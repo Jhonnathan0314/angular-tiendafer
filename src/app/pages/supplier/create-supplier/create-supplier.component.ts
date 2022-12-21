@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Supplier } from 'src/app/models/supplier.model';
 import { SupplierService } from 'src/app/services/supplier/supplier.service';
+import { HeaderService } from '../../global/header/header.service';
 
 @Component({
   selector: 'app-create-supplier',
   templateUrl: './create-supplier.component.html',
-  styleUrls: ['./create-supplier.component.css']
+  styleUrls: ['./create-supplier.component.css'],
+  providers: [
+    HeaderService
+  ]
 })
 export class CreateSupplierComponent implements OnInit {
 
@@ -14,9 +18,13 @@ export class CreateSupplierComponent implements OnInit {
   supplierName?: string;
   sellerName?: string;
 
-  constructor(private supplierService: SupplierService, private router: Router) { }
+  constructor(
+    private supplierService: SupplierService,
+    private headerService: HeaderService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.headerService.show();
   }
 
   createSupplier(){

@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Supplier } from 'src/app/models/supplier.model';
 import { SupplierService } from 'src/app/services/supplier/supplier.service';
+import { HeaderService } from '../../global/header/header.service';
 
 @Component({
   selector: 'app-update-supplier',
   templateUrl: './update-supplier.component.html',
-  styleUrls: ['./update-supplier.component.css']
+  styleUrls: ['./update-supplier.component.css'],
+  providers: [
+    HeaderService
+  ]
 })
 export class UpdateSupplierComponent implements OnInit {
 
@@ -15,7 +19,11 @@ export class UpdateSupplierComponent implements OnInit {
   sellerName?: string;
   actualSupplier?: Supplier;
 
-  constructor(private supplierService: SupplierService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private supplierService: SupplierService,
+    private headerService: HeaderService,
+    private router: Router, 
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(idSupplier => {
@@ -25,6 +33,8 @@ export class UpdateSupplierComponent implements OnInit {
   }
 
   getSupplier() {
+    this.headerService.show();
+
     this.supplierService.findById(this.idSupplier!).subscribe({
       next: (supplier) => {
         this.actualSupplier = supplier;

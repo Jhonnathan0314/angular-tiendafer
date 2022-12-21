@@ -10,11 +10,15 @@ import { ClientBillService } from 'src/app/services/client-bill/client-bill.serv
 import { ClientService } from 'src/app/services/client/client.service';
 import { DetailClientBillService } from 'src/app/services/detail-client-bill/detail-client-bill.service';
 import { ProductService } from 'src/app/services/product/product.service';
+import { HeaderService } from '../../global/header/header.service';
 
 @Component({
   selector: 'app-create-client-bill',
   templateUrl: './create-client-bill.component.html',
-  styleUrls: ['./create-client-bill.component.css']
+  styleUrls: ['./create-client-bill.component.css'],
+  providers: [
+    HeaderService
+  ]
 })
 export class CreateClientBillComponent implements OnInit {
 
@@ -45,9 +49,15 @@ export class CreateClientBillComponent implements OnInit {
   /* Arreglo que tiene todos los productos */
   products?: Product[];
 
-  constructor(private clientBillService: ClientBillService, private detailClientBillService: DetailClientBillService, 
-    private clientService: ClientService, private productService: ProductService, 
-    private router: Router, private dialog: MatDialog, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private clientBillService: ClientBillService, 
+    private detailClientBillService: DetailClientBillService, 
+    private clientService: ClientService, 
+    private productService: ProductService,
+    private headerService: HeaderService,
+    private router: Router, 
+    private dialog: MatDialog, 
+    private activatedRoute: ActivatedRoute) { }
 
   /* Antes de iniciar valida:
    * - Existencia de un pedido que no se finalizó
@@ -64,6 +74,8 @@ export class CreateClientBillComponent implements OnInit {
 
   /* Si no existe un pedido crea uno nuevo, de lo contrario va a loadOrder() */
   validateBill(isPending: string, idClient: number){
+    this.headerService.show();
+
     if(localStorage.getItem("actualBill") == null){
       this.createBill(isPending, idClient);
     }else{

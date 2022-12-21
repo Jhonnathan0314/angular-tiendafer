@@ -4,6 +4,7 @@ import { ClientBill } from 'src/app/models/client-bill.model';
 import { Client } from 'src/app/models/client.model';
 import { ClientBillService } from 'src/app/services/client-bill/client-bill.service';
 import { ClientService } from 'src/app/services/client/client.service';
+import { HeaderService } from '../../global/header/header.service';
 
 @Component({
   selector: 'app-payment-client-all',
@@ -16,7 +17,12 @@ export class PaymentClientAllComponent implements OnInit {
   client?: Client;
   bills?: ClientBill[];
 
-  constructor(private clientService: ClientService, private clientBillService: ClientBillService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private clientService: ClientService, 
+    private clientBillService: ClientBillService,
+    private headerService: HeaderService,
+    private router: Router, 
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(idClient => {
@@ -27,6 +33,8 @@ export class PaymentClientAllComponent implements OnInit {
   }
 
   findClient(){
+    this.headerService.show();
+
     this.clientService.findById(this.idClient!).subscribe({
       next: (client) => {
         this.client = client;

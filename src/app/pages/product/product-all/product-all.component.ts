@@ -4,24 +4,33 @@ import { Product } from 'src/app/models/product.model';
 import { Section } from 'src/app/models/section.model';
 import { ProductService } from 'src/app/services/product/product.service';
 import { SectionService } from 'src/app/services/section/section.service';
+import { HeaderService } from '../../global/header/header.service';
 
 @Component({
   selector: 'app-product-all',
   templateUrl: './product-all.component.html',
-  styleUrls: ['./product-all.component.css']
+  styleUrls: ['./product-all.component.css'],
+  providers: [
+    HeaderService
+  ]
 })
 export class ProductAllComponent implements OnInit {
 
   products?: Product[];
   searchName?: string;
 
-  constructor(private productService: ProductService, private router: Router) { }
+  constructor(
+    private productService: ProductService,
+    private headerService: HeaderService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.findProducts();
   }
 
   findProducts(){
+    this.headerService.show();
+
     this.productService.findAll().subscribe({
       next: (products) => {
         if(this.searchName == undefined){

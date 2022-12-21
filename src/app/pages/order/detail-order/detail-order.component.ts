@@ -4,11 +4,15 @@ import { DetailOrderBill } from 'src/app/models/detail-order-bill.model';
 import { OrderBill } from 'src/app/models/order.model';
 import { DetailOrderBillService } from 'src/app/services/detail-order-bill/detail-order-bill.service';
 import { OrderService } from 'src/app/services/order/order.service';
+import { HeaderService } from '../../global/header/header.service';
 
 @Component({
   selector: 'app-detail-order',
   templateUrl: './detail-order.component.html',
-  styleUrls: ['./detail-order.component.css']
+  styleUrls: ['./detail-order.component.css'],
+  providers: [
+    HeaderService
+  ]
 })
 export class DetailOrderComponent implements OnInit {
 
@@ -16,7 +20,11 @@ export class DetailOrderComponent implements OnInit {
   detailOrders?: DetailOrderBill[];
   actualOrder?: OrderBill;
 
-  constructor(private orderService: OrderService, private detailOrderService: DetailOrderBillService, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private orderService: OrderService, 
+    private detailOrderService: DetailOrderBillService,
+    private headerService: HeaderService,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(idOrder => {
@@ -27,6 +35,8 @@ export class DetailOrderComponent implements OnInit {
   }
 
   findActualOrder() {
+    this.headerService.show();
+
     this.orderService.findById(this.idOrder!).subscribe({
       next: (order) => {
         this.actualOrder = order;

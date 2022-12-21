@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Section } from 'src/app/models/section.model';
 import { SectionService } from 'src/app/services/section/section.service';
+import { HeaderService } from '../../global/header/header.service';
 
 @Component({
   selector: 'app-section-all',
   templateUrl: './section-all.component.html',
-  styleUrls: ['./section-all.component.css']
+  styleUrls: ['./section-all.component.css'],
+  providers: [
+    HeaderService
+  ]
 })
 export class SectionAllComponent implements OnInit {
 
@@ -14,13 +18,19 @@ export class SectionAllComponent implements OnInit {
   sections?: Section[]
   searchName?: string;
 
-  constructor(private sectionService: SectionService, private router: Router) { }
+  constructor(
+    private sectionService: SectionService, 
+    private headerService: HeaderService,
+    private router: Router) { 
+  }
 
   ngOnInit(): void {
     this.findSections();
   }
 
   findSections(){
+    this.headerService.show()
+
     this.sectionService.findAll().subscribe({
       next: (sections) => {
         if(this.searchName == undefined){

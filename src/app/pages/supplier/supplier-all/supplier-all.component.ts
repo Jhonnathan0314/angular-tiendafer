@@ -2,24 +2,33 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Supplier } from 'src/app/models/supplier.model';
 import { SupplierService } from 'src/app/services/supplier/supplier.service';
+import { HeaderService } from '../../global/header/header.service';
 
 @Component({
   selector: 'app-supplier-all',
   templateUrl: './supplier-all.component.html',
-  styleUrls: ['./supplier-all.component.css']
+  styleUrls: ['./supplier-all.component.css'],
+  providers: [
+    HeaderService
+  ]
 })
 export class SupplierAllComponent implements OnInit {
 
   suppliers?: Supplier[]
   searchName?: string;
 
-  constructor(private supplierService: SupplierService, private router: Router) { }
+  constructor(
+    private supplierService: SupplierService,
+    private headerService: HeaderService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.findSuppliers();
   }
 
   findSuppliers(){
+    this.headerService.show();
+
     this.supplierService.findAll().subscribe({
       next: (suppliers) => {
         if(this.searchName == undefined){

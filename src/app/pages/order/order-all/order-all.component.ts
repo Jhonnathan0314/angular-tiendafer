@@ -5,18 +5,27 @@ import { OrderBill } from 'src/app/models/order.model';
 import { Supplier } from 'src/app/models/supplier.model';
 import { OrderService } from 'src/app/services/order/order.service';
 import { SupplierService } from 'src/app/services/supplier/supplier.service';
+import { HeaderService } from '../../global/header/header.service';
 
 @Component({
   selector: 'app-order-all',
   templateUrl: './order-all.component.html',
-  styleUrls: ['./order-all.component.css']
+  styleUrls: ['./order-all.component.css'],
+  providers: [
+    HeaderService
+  ]
 })
 export class OrderAllComponent implements OnInit {
 
   orders?: OrderBill[];
   suppliers?: Supplier[];
 
-  constructor(private orderService: OrderService, private supplierService: SupplierService, private router: Router, private dialog: MatDialog) { }
+  constructor(
+    private orderService: OrderService, 
+    private supplierService: SupplierService,
+    private headerService: HeaderService,
+    private router: Router, 
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.findOrders();
@@ -24,6 +33,8 @@ export class OrderAllComponent implements OnInit {
   }
 
   findOrders(){
+    this.headerService.show();
+
     this.orderService.findAll().subscribe({
       next: (orders) => {
         this.orders = orders;

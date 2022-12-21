@@ -9,10 +9,12 @@ import { PaymentModule } from './payment/payment.module';
 import { ProductModule } from './product/product.module';
 import { SectionModule } from './section/section.module';
 import { SupplierModule } from './supplier/supplier.module';
+import { HeaderComponent } from './global/header/header.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     PagesRoutingModule,

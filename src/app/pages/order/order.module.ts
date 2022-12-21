@@ -7,6 +7,7 @@ import { CreateOrderComponent, CreateOrderComponentDialog } from './create-order
 import { DetailOrderComponent } from './detail-order/detail-order.component';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { GlobalModule } from '../global/global.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     CommonModule,
     OrderRoutingModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    GlobalModule
   ]
 })
 export class OrderModule { }

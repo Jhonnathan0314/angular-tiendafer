@@ -6,6 +6,7 @@ import { ProductAllComponent } from './product-all/product-all.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
 import { FormsModule } from '@angular/forms';
+import { GlobalModule } from '../global/global.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ProductRoutingModule,
-    FormsModule
+    FormsModule,
+    GlobalModule
   ]
 })
 export class ProductModule { }

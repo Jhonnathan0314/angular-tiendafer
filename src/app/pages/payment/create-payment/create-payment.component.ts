@@ -5,6 +5,7 @@ import { Client } from 'src/app/models/client.model';
 import { Payment } from 'src/app/models/payment.model';
 import { ClientService } from 'src/app/services/client/client.service';
 import { PaymentService } from 'src/app/services/payment/payment.service';
+import { HeaderService } from '../../global/header/header.service';
 
 @Component({
   selector: 'app-create-payment',
@@ -20,7 +21,12 @@ export class CreatePaymentComponent implements OnInit {
   actualDate?: string;
   cash?: number;
 
-  constructor(private clientService: ClientService, private paymentService: PaymentService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private clientService: ClientService, 
+    private paymentService: PaymentService,
+    private headerService: HeaderService,
+    private router: Router, 
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(idClient => {
@@ -30,6 +36,8 @@ export class CreatePaymentComponent implements OnInit {
   }
 
   findClient(){
+    this.headerService.show();
+
     this.clientService.findById(this.idClient!).subscribe({
       next: (client) => {
         this.client = client;

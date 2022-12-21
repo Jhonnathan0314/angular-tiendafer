@@ -7,6 +7,7 @@ import { CreateClientBillComponent, CreateClientBillComponentDialog } from './cr
 import { DetailClientBillComponent } from './detail-client-bill/detail-client-bill.component';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { GlobalModule } from '../global/global.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     CommonModule,
     ClientBillRoutingModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    GlobalModule
   ]
 })
 export class ClientBillModule { }

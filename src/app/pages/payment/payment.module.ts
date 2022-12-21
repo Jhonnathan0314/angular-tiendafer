@@ -7,6 +7,7 @@ import { PaymentClientAllComponent } from './payment-client-all/payment-client-a
 import { PaymentClientDetailComponent } from './payment-client-detail/payment-client-detail.component';
 import { CreatePaymentComponent } from './create-payment/create-payment.component';
 import { FormsModule } from '@angular/forms';
+import { GlobalModule } from '../global/global.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     PaymentRoutingModule,
-    FormsModule
+    FormsModule,
+    GlobalModule
   ]
 })
 export class PaymentModule { }

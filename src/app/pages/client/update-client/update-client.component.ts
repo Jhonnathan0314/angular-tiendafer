@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Client } from 'src/app/models/client.model';
 import { ClientService } from 'src/app/services/client/client.service';
+import { HeaderService } from '../../global/header/header.service';
 
 @Component({
   selector: 'app-update-client',
   templateUrl: './update-client.component.html',
-  styleUrls: ['./update-client.component.css']
+  styleUrls: ['./update-client.component.css'],
+  providers: [
+    HeaderService
+  ]
 })
 export class UpdateClientComponent implements OnInit {
 
@@ -14,7 +18,11 @@ export class UpdateClientComponent implements OnInit {
   idClient?: number;
   name?: string;
 
-  constructor(private clientService: ClientService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private clientService: ClientService,
+    private headerService: HeaderService,
+    private router: Router, 
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(idClient => {
@@ -24,6 +32,8 @@ export class UpdateClientComponent implements OnInit {
   }
 
   getClient(){
+    this.headerService.show();
+
     this.clientService.findById(this.idClient!).subscribe({
       next: (client) => {
         this.actualClient = client;

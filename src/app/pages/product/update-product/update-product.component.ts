@@ -4,11 +4,15 @@ import { Product } from 'src/app/models/product.model';
 import { Section } from 'src/app/models/section.model';
 import { ProductService } from 'src/app/services/product/product.service';
 import { SectionService } from 'src/app/services/section/section.service';
+import { HeaderService } from '../../global/header/header.service';
 
 @Component({
   selector: 'app-update-product',
   templateUrl: './update-product.component.html',
-  styleUrls: ['./update-product.component.css']
+  styleUrls: ['./update-product.component.css'],
+  providers: [
+    HeaderService
+  ]
 })
 export class UpdateProductComponent implements OnInit {
 
@@ -20,7 +24,12 @@ export class UpdateProductComponent implements OnInit {
   idSection: number = 0;
   sections?: Section[];
 
-  constructor(private sectionService: SectionService, private productService: ProductService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private sectionService: SectionService, 
+    private productService: ProductService,
+    private headerService: HeaderService,
+    private router: Router, 
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(idProduct => {
@@ -31,6 +40,8 @@ export class UpdateProductComponent implements OnInit {
   }
   
   getProduct() {
+    this.headerService.show()
+
     this.productService.findById(this.idProduct!).subscribe({
       next: (product) => {
         this.actualProduct = product;

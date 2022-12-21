@@ -6,6 +6,7 @@ import { Payment } from 'src/app/models/payment.model';
 import { ClientBillService } from 'src/app/services/client-bill/client-bill.service';
 import { ClientService } from 'src/app/services/client/client.service';
 import { PaymentService } from 'src/app/services/payment/payment.service';
+import { HeaderService } from '../../global/header/header.service';
 
 @Component({
   selector: 'app-payment-all',
@@ -21,7 +22,12 @@ export class PaymentAllComponent implements OnInit {
   payments?: Payment[];
   pendingBills?: ClientBill[];
 
-  constructor(private clientService: ClientService, private paymentService: PaymentService, private clientBill: ClientBillService, private router: Router) { }
+  constructor(
+    private clientService: ClientService, 
+    private paymentService: PaymentService, 
+    private clientBill: ClientBillService,
+    private headerService: HeaderService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.findClients();
@@ -30,6 +36,8 @@ export class PaymentAllComponent implements OnInit {
   }
 
   findClients(){
+    this.headerService.show();
+
     this.clientService.findAll().subscribe({
       next: (clients) => {
         this.allClients = clients;

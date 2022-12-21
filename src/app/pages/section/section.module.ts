@@ -6,6 +6,8 @@ import { SectionAllComponent } from './section-all/section-all.component';
 import { CreateSectionComponent } from './create-section/create-section.component';
 import { UpdateSectionComponent } from './update-section/update-section.component';
 import { FormsModule } from '@angular/forms';
+import { GlobalModule } from '../global/global.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     SectionRoutingModule,
-    FormsModule
+    FormsModule,
+    GlobalModule
   ]
 })
 export class SectionModule { }
