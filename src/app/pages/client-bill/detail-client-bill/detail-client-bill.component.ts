@@ -9,10 +9,7 @@ import { HeaderService } from '../../global/header/header.service';
 @Component({
   selector: 'app-detail-client-bill',
   templateUrl: './detail-client-bill.component.html',
-  styleUrls: ['./detail-client-bill.component.css'],
-  providers: [
-    HeaderService
-  ]
+  styleUrls: ['./detail-client-bill.component.css']
 })
 export class DetailClientBillComponent implements OnInit {
 

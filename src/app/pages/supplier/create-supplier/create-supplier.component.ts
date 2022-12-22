@@ -7,10 +7,7 @@ import { HeaderService } from '../../global/header/header.service';
 @Component({
   selector: 'app-create-supplier',
   templateUrl: './create-supplier.component.html',
-  styleUrls: ['./create-supplier.component.css'],
-  providers: [
-    HeaderService
-  ]
+  styleUrls: ['./create-supplier.component.css']
 })
 export class CreateSupplierComponent implements OnInit {
 

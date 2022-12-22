@@ -9,10 +9,7 @@ import { HeaderService } from '../../global/header/header.service';
 @Component({
   selector: 'app-product-all',
   templateUrl: './product-all.component.html',
-  styleUrls: ['./product-all.component.css'],
-  providers: [
-    HeaderService
-  ]
+  styleUrls: ['./product-all.component.css']
 })
 export class ProductAllComponent implements OnInit {
 

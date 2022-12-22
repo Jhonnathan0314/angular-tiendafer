@@ -7,10 +7,7 @@ import { HeaderService } from '../../global/header/header.service';
 @Component({
   selector: 'app-create-section',
   templateUrl: './create-section.component.html',
-  styleUrls: ['./create-section.component.css'],
-  providers: [
-    HeaderService
-  ]
+  styleUrls: ['./create-section.component.css']
 })
 export class CreateSectionComponent implements OnInit {
 

@@ -7,10 +7,7 @@ import { HeaderService } from '../../global/header/header.service';
 @Component({
   selector: 'app-update-client',
   templateUrl: './update-client.component.html',
-  styleUrls: ['./update-client.component.css'],
-  providers: [
-    HeaderService
-  ]
+  styleUrls: ['./update-client.component.css']
 })
 export class UpdateClientComponent implements OnInit {
 

@@ -7,10 +7,7 @@ import { HeaderService } from '../../global/header/header.service';
 @Component({
   selector: 'app-section-all',
   templateUrl: './section-all.component.html',
-  styleUrls: ['./section-all.component.css'],
-  providers: [
-    HeaderService
-  ]
+  styleUrls: ['./section-all.component.css']
 })
 export class SectionAllComponent implements OnInit {
 

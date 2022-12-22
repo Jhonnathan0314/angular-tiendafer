@@ -11,10 +11,7 @@ import { HeaderService } from '../../global/header/header.service';
 @Component({
   selector: 'app-client-bill-all',
   templateUrl: './client-bill-all.component.html',
-  styleUrls: ['./client-bill-all.component.css'],
-  providers: [
-    HeaderService
-  ]
+  styleUrls: ['./client-bill-all.component.css']
 })
 export class ClientBillAllComponent implements OnInit {
 

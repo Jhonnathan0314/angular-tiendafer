@@ -15,10 +15,7 @@ import { HeaderService } from '../../global/header/header.service';
 @Component({
   selector: 'app-create-client-bill',
   templateUrl: './create-client-bill.component.html',
-  styleUrls: ['./create-client-bill.component.css'],
-  providers: [
-    HeaderService
-  ]
+  styleUrls: ['./create-client-bill.component.css']
 })
 export class CreateClientBillComponent implements OnInit {
 

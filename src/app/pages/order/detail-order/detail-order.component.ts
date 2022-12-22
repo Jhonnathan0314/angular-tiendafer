@@ -9,10 +9,7 @@ import { HeaderService } from '../../global/header/header.service';
 @Component({
   selector: 'app-detail-order',
   templateUrl: './detail-order.component.html',
-  styleUrls: ['./detail-order.component.css'],
-  providers: [
-    HeaderService
-  ]
+  styleUrls: ['./detail-order.component.css']
 })
 export class DetailOrderComponent implements OnInit {
 
